@@ -1,25 +1,39 @@
-import React from 'react';
-import { Card, CardBody, CardSubtitle, CardTitle, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Button, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import {TASKS} from "../../app/shared/TASKS";
 
-const TaskCard = ({ task }) => {
-    const { id, name, dueDate } = task;
-   
-
-    // const deleteCard = () => {
-    //     setTaskId(TASKS.filter(task => task.id !== id ))
-    // }
-
+const TaskCard = () => {
+    const [taskList, setTaskList] = useState(TASKS);
+  
+    //delete task function
+    const deleteTask = (id) => {
+      setTaskList(taskList.filter(task => task.id !== id))
+    }
+  
+    //add task function
     return (
-        <Card color='light'>
-            <CardBody>
-                <CardTitle tag='h5'><br />Task: {name}</CardTitle>
-                <CardSubtitle className='mb-2 text-muted' tag='h6'><br />Due Date: {dueDate}</CardSubtitle>   
-                <Button className='btn-sm bg-primary'>Edit</Button>
-                {/* <Button onClick={() => deleteCard(task.id)}className='btn-sm bg-danger'>Delete</Button>   */}
-            </CardBody>
-        </Card>
+      <>
+            {taskList.map(task => (
+            <div key={task.id}>
+                <Card style={{width: '18rem', border: '1px solid #ccc', padding: "20px", margin: "10px"}}>
+                  <CardBody>
+                    <CardTitle tag="h5">
+                    {task.name} 
+                    </CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                    Status: {task.status}
+                    </CardSubtitle>
+                    <CardText>
+                    Description: {task.description}
+                    </CardText>
+                  </CardBody>
+                  <Button onClick={()=> deleteTask(task.id)} className='btn-sm bg-primary mr-10'>Delete Task</Button>
+                  <Button className='btn-sm bg-primary ml-10'>Update Task</Button> 
+                </Card>     
+           </div>
+            ))}
+            </>
     );
-};
+  };
 
 export default TaskCard;

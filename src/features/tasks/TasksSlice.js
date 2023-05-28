@@ -1,5 +1,6 @@
 import {TASKS} from '../../app/shared/TASKS';
 
+
 export const selectAllTasks = () => {
     return TASKS;
 };
