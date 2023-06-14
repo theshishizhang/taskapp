@@ -26,9 +26,9 @@ const AddTask = ({ onCreate }) => {
                 onChange={(event) => setNewTaskTitle(event.target.value)}
             />
             {/* Add Task Status */}
-            <select value={newTaskStatus} onChange={(event) =>setNewTaskStatus(event.target.value)}>
+            <select name='status' value={newTaskStatus} onChange={(event) =>setNewTaskStatus(event.target.value)}>
                 <option value="Open">Open</option>
-                <option value="In Progress">In Progress</option>
+                <option value="In Progress" selected>In Progress</option>
                 <option value="Done">Done</option>
             </select>
             <br />
